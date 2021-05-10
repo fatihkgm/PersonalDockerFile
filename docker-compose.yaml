@@ -1,0 +1,22 @@
+version: '3'
+services: 
+        web1:
+                image: nginx
+                ports:
+                        - "8080:80"
+                volumes:
+                        - ./web1:/usr/share/nginx/html
+                        - depo:/tmp
+                networks: 
+                        - sw-br-network
+        web2:
+                build: .
+                ports:
+                        - "9080:80"
+                networks:
+                        - sw-br-network
+volumes:
+        depo:
+networks:
+        sw-br-network:
+                driver: bridge
